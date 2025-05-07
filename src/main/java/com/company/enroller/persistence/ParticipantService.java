@@ -3,6 +3,7 @@ package com.company.enroller.persistence;
 import com.company.enroller.model.Participant;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -34,6 +35,7 @@ public class ParticipantService {
 
     }
 
+
     public Participant findByLogin(String login) {
         return connector.getSession().get(Participant.class, login);
     }
@@ -56,5 +58,6 @@ public class ParticipantService {
         connector.getSession().delete(participant);
         transaction.commit();
     }
+
 
 }

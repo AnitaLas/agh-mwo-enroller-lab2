@@ -24,6 +24,26 @@ public class MeetingService {
 		return query.list();
 	}
 
+	public Collection<Participant> getParticipants(long id) {
+		Meeting newMeeting = findById(id);
+		Collection<Participant> participants = newMeeting.getParticipants();
+		return participants;
+	}
+
+	public Participant getParticipant(long id, Participant participant) {
+		Collection<Participant> participants =  getParticipants( id);
+		Participant foundParticipant = participants.iterator().next();
+		return foundParticipant;
+	}
+
+	public Meeting add(Meeting meeting, Participant participant) {
+//		Meeting meeting = findById(id);
+		Transaction transaction = connector.getSession().beginTransaction();
+		meeting.addParticipant(participant);
+		connector.getSession().save(meeting);
+		transaction.commit();
+		return meeting;
+	}
 
 	public Meeting findById(long id) {
 		return connector.getSession().get(Meeting.class, id);
@@ -48,5 +68,12 @@ public class MeetingService {
 		connector.getSession().delete(meeting);
 		transaction.commit();
 	}
+
+	public Meeting getMeeting(long id) {
+		return connector.getSession().get(Meeting.class, id);
+	}
+
+
+
 
 }

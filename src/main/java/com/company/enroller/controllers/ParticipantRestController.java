@@ -16,19 +16,19 @@ public class ParticipantRestController {
 	@Autowired
 	ParticipantService participantService;
 
-
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<?> getParticipants(@RequestParam(value = "sortOrder", defaultValue = "") String sortOrder,
-												@RequestParam(value = "key", defaultValue = "") String key) {
-		Collection<Participant> participants = participantService.getAll(sortOrder, key);
-		return new ResponseEntity<Collection<Participant>>(participants, HttpStatus.OK);
-	}
-
 //	@RequestMapping(value = "", method = RequestMethod.GET)
 //	public ResponseEntity<?> getParticipants2() {
 //		Collection<Participant> participants = participantService.getAll();
 //		return new ResponseEntity<Collection<Participant>>(participants, HttpStatus.OK);
 //	}
+
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public ResponseEntity<?> getParticipants(@RequestParam(value = "sortOrder", defaultValue = "") String sortOrder,
+											 @RequestParam(value = "key", defaultValue = "") String key) {
+		Collection<Participant> participants = participantService.getAll(sortOrder, key);
+		return new ResponseEntity<Collection<Participant>>(participants, HttpStatus.OK);
+	}
+
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getParticipant(@PathVariable("id") String login) {
@@ -50,6 +50,7 @@ public class ParticipantRestController {
 		return new ResponseEntity<Participant>(participant, HttpStatus.CREATED);
 	}
 
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> delete(@PathVariable("id") String login) {
 		Participant participant = participantService.findByLogin(login);
@@ -70,9 +71,5 @@ public class ParticipantRestController {
 		participantService.update(participant);
 		return new ResponseEntity<Participant>(HttpStatus.OK);
 	}
-
-
-
-
 
 }
