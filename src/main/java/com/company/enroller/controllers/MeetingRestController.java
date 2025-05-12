@@ -18,15 +18,14 @@ public class MeetingRestController {
     @Autowired
     MeetingService meetingService;
 
-    // bad decision - single responsibility principle ?
     @Autowired
     ParticipantService participantService;
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<?> getMeetings() {
-		Collection<Meeting> meetings = meetingService.getAll();
-		return new ResponseEntity<Collection<Meeting>>(meetings, HttpStatus.OK);
-	}
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public ResponseEntity<?> getMeetings() {
+        Collection<Meeting> meetings = meetingService.getAll();
+        return new ResponseEntity<Collection<Meeting>>(meetings, HttpStatus.OK);
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getMeeting(@PathVariable("id") long id) {
@@ -43,7 +42,7 @@ public class MeetingRestController {
         if (meeting == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        Collection<Participant> participants  = meetingService.getParticipants(id);
+        Collection<Participant> participants = meetingService.getParticipants(id);
         return new ResponseEntity<Collection<Participant>>(participants, HttpStatus.OK);
     }
 
@@ -119,5 +118,4 @@ public class MeetingRestController {
         meetingService.update(meeting);
         return new ResponseEntity<Meeting>(meeting, HttpStatus.OK);
     }
-
 }

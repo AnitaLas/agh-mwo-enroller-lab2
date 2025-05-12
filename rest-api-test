@@ -32,13 +32,21 @@ Content-Type: application/json
 
 ###
 
+
+GET http://localhost:8080/participants
+Accept: application/json
+
+###
+
 POST http://localhost:8080/participants
 Content-Type: application/json
 
 {
-  "login": "user7",
-  "password": "password"
+  "login": "user10",
+  "password": "pwd10"
 }
+
+
 
 
 ###
@@ -95,6 +103,8 @@ Content-Type: application/json
 GET http://localhost:8080/meetings/4/participants
 Content-Type: application/json
 
+
+
 ###
 
 GET http://localhost:8080/meetings/21/participants
@@ -125,6 +135,30 @@ Content-Type: application/json
 
 DELETE http://localhost:8080/meetings/21/participants/user3
 Content-Type: application/json
+
+
+###
+POST http://localhost:8080/tokens
+Content-Type: application/json
+
+{
+  "login": "user9",
+  "password": "pwd9"
+}
+
+###
+POST http://localhost:8080/tokens
+Content-Type: application/json
+
+{
+  "login": "user10",
+  "password": "pwd10"
+}
+
+<> 2025-05-12T130752.200.txt
+
+
+
 
 
 
